@@ -4,7 +4,6 @@ import '../../../../core/interceptor/AuthInterceptor.dart';
 
 abstract class PrefUtils {
   void setPrefExample(String prefExample);
-
   String? getPrefExample();
 }
 

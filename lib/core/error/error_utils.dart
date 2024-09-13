@@ -6,19 +6,35 @@ import 'package:dartz/dartz.dart';
 
 
 //data source
-Future<T> handleError<T>(Future<T> Function() operation) async {
-  try {
-    return await operation();
-  } catch (e) {
-    if (e is Exception) {
-      throw ServerException(message: e.toString());
-    }
-    else {
-      throw ServerException(message: e.toString());
-    }
+// Future<T> handleError<T>(Future<T> Function() operation) async {
+//   try {
+//     return await operation();
+//   } catch (e) {
+//     if (e is Exception) {
+//       throw ServerException(message: e.toString());
+//     }
+//     else {
+//       throw ServerException(message: e.toString());
+//     }
+//   }
+// }
+String mapExceptionToMessage(Exception e) {
+  if (e is ServerException) {
+    return e.message;
+  } else if (e is UnauthorizedException) {
+    return e.message;
+  } else if (e is BadRequestException) {
+    return e.message;
+  } else if (e is UnknownNetworkException) {
+    return e.message;
+  } else if (e is ServerErrorException) {
+    return e.message;
+  } else if (e is NetworkException) {
+    return e.message;
+  } else {
+    return 'Unknown error occurred';
   }
 }
-
 
 String _getErrorMessage(Response response) {
   try {
